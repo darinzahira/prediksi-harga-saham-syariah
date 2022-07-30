@@ -1,0 +1,42 @@
+{% extends "layout.html" %} 
+{% block title %}Histori{% endblock %}
+{% block content %}
+<div class="row p-5 text-center">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Histori Prediksi Harga Saham</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body table-responsive p-0" style="height: 300px;">
+        <table class="table table-head-fixed text-nowrap">
+          <thead>
+            <tr>
+              <th>Tanggal Prediksi</th>
+              <th>Emiten</th>
+              <th>Tanggal Target</th>
+              <th>Prediksi Harga Saham</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for predicts in user.predicts %}
+              <tr>
+                <td>{{predicts.date}}</td>
+                <td>{{predicts.emiten}}</td>
+                <td>{{predicts.target}}</td>
+                <td>{{predicts.predict}}</td>
+                <td>
+                  <img src="{{ url_for('static', filename='images/delete.png') }}" width="25" height="25" onclick="deletePredict({{ predicts.id }})">
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+</div>
+{% endblock %}

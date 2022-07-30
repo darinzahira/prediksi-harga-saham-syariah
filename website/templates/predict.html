@@ -1,0 +1,133 @@
+{% extends "base.html" %} 
+{% block title %}Prediksi{% endblock %}
+{% block content %}
+    <div class="row p-5 text-center">
+      <h2 >Harga Saham {{emiten}}</h2>
+        <div class="col-sm-6 mt-3">
+          <div class="card">
+            <div class="card-body">
+                <div style="height: 300px; overflow: auto">
+                    <table class="table table-dark table-striped" style="height: 400px">
+                        <thead>
+                          <tr>
+                            <th>Tanggal</th>
+                            <th>Open</th>
+                            <th>High</th>
+                            <th>Low</th>
+                            <th>Close</th>
+                            <th>Volume</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <!-- jinja2 Technique -->
+                        {% for data in context %}
+                            <tr>
+                            <td>{{data.Date}}</td>
+                            <td>{{data.Open}}</td>
+                            <td>{{data.High}}</td>
+                            <td>{{data.Low}}</td>
+                            <td>{{data.Close}}</td>
+                            <td>{{data.Volume}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 mt-3">
+          <div class="card">
+            <div class="card-body">
+                <div class="">
+                    <img src="{{ url_for('static', filename='images/price_'+symbol+'.png') }}" class="img-fluid">
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <div class="row ml-5 mr-5 mb-5">
+      <h2 class="text-center">Prediksi Pada Data Training</h2>
+        <div class="col-sm-6 mt-3">
+          <div class="card">
+            <div class="card-body">
+                <div style="height: 300px; overflow: auto">
+                    <table class="table table-dark table-striped" style="height: 400px">
+                        <thead>
+                          <tr>
+                            <th>Tanggal</th>
+                            <th>Close</th>
+                            <th>Prediksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <!-- jinja2 Technique -->
+                        {% for data in train %}
+                            <tr>
+                            <td>{{data.Date}}</td>
+                            <td>{{data.Close}}</td>
+                            <td>{{data.Predictions}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 mt-3">
+          <div class="card">
+            <div class="card-body">
+                <div class="">
+                    <img src="{{ url_for('static', filename='images/predict_'+symbol+'.png') }}" class="img-fluid">
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <div class="row ml-5 mr-5 ">
+      <h2 class="text-center">Prediksi Pada Data Testing</h2>
+        <div class="col-sm-6 mt-3">
+          <div class="card">
+            <div class="card-body">
+                <div style="height: 300px; overflow: auto">
+                    <table class="table table-dark table-striped" style="height: 400px">
+                        <thead>
+                          <tr>
+                            <th>Tanggal</th>
+                            <th>Close</th>
+                            <th>Prediksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <!-- jinja2 Technique -->
+                        {% for data in valid %}
+                            <tr>
+                            <td>{{data.Date}}</td>
+                            <td>{{data.Close}}</td>
+                            <td>{{data.Predictions}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 mt-3">
+          <div class="card">
+            <div class="card-body">
+                <div class="">
+                    <img src="{{ url_for('static', filename='images/predicted_'+symbol+'.png') }}" class="img-fluid">
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-5">
+          <h5> Mean Square Error Test Data : {{mse_test}}</h5>
+          <h5> Mean Absolute Percentage Error Test Data : {{mape_test}}</h5>
+        </div>
+    </div>
+{% endblock %}

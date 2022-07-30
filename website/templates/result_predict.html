@@ -1,0 +1,61 @@
+{% extends "layout.html" %} 
+{% block title %}Prediksi{% endblock %}
+{% block content %}
+    <div class="row p-4 text-center">
+      <h2 >Prediksi Harga Saham {{emiten}}</h2>
+        <div class="col-sm-6 mt-2">
+          <div class="card">
+            <div class="card-body">
+                <div style="height: 300px; overflow: auto">
+                    <table class="table table-dark table-striped" style="height: 200px">
+                        <thead>
+                          <tr>
+                            <th>No.</th>
+                            <th>Tanggal</th>
+                            <th>Prediksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <!-- jinja2 Technique -->
+                        {% for data in context %}
+                            <tr>
+                            <td>{{loop.index}}</td>
+                            <td>{{data.Date}}</td>
+                            <td>{{data.Predictions}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 mt-2">
+          <div class="card">
+            <div class="card-body">
+                <div style="height: 300px;">
+                    <img src="{{ url_for('static', filename='images/result_'+symbol+'.png') }}" class="img-fluid">
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="row ml-5">
+        <div class="col-sm-6 mt-2">
+          <div class="">
+            <h4>Prediksi Harga Pada Tanggal {{target}} : {{price}}</h4>
+          </div>
+        </div>
+        <div class="col-sm-6 mt-2">
+          <div class="">
+            <form action="/save/{{target}}/{{price}}/{{emiten}}">
+              <div class="d-grid gap-2 d-md-flex">
+                {% if user.is_authenticated %}
+                <button type="submit" class="btn btn-primary">Simpan</button>
+                {% endif %}
+              </div>
+            </form>
+          </div>
+        </div>
+    </div>
+{% endblock %}

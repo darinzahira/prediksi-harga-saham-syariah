@@ -1,0 +1,48 @@
+{% extends "base.html" %} 
+{% block title %}Upload File{% endblock %}
+
+{% block content %}
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-bold mt-5">Sistem Prediksi Harga Saham Syariah Menggunakan Metode Deep Learning Dengan Algoritma Long Short-Term Memory</h1>
+      <p class="lead text-muted">Darin Zahira Aflah (1841720033)</p>
+    </div>
+  </div>
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <div class="row">
+        <div class="col-sm-6">
+          <h1 class="display-5 fw-bold">Sistem Prediksi Harga Saham Syariah</h1>
+          <p class="col-md-12 fs-4">Silahkan input nama emiten, tanggal mulai dan tanggal akhir untuk prediksi.</p>
+          <form action="/formm" method="post" enctype="multipart/form-data">
+              <p class="text-left">Emiten</p>
+              <select class="form-select" aria-label="Default select example" name="symbol" id="symbol">
+                <option selected>Pilih Simbol Emiten</option>
+                <option value="ANTM.JK">PT Aneka Tambang Tbk</option>
+                <option value="ERAA.JK">Erajaya Swasembada Tbk</option>
+                <option value="WIKA.JK">Wijaya Karya (Persero) Tbk</option>
+                <option value="KLBF.JK">Kalbe Farma Tbk</option>
+                <option value="SMGR.JK">Semen Indonesia Tbk</option>
+                <option value="ADRO.JK">Adaro Energy Indonesia Tbk</option>
+                <option value="INDF.JK">Indofood Sukses Makmur Tbk</option>
+                <option value="MNCN.JK">Media Nusantara Citra Tbk</option>
+                <option value="PGAS.JK">Perusahaan Gas Negara Tbk</option>
+                <option value="TLKM.JK">Telkom Indonesia (Persero) Tbk</option>
+              </select>
+              <p class="text-left">Tanggal Mulai</p>
+              <input type="date" name="start" id="start" class="form-control" placeholder="Date Start">
+              <p class="text-left">Tanggal Akhir</p>
+              <input type="date" name="end" id="end" class="form-control" placeholder="Date End">
+              <br><br><button class="btn btn-primary btn-lg" type="submit">Submit</button>
+          </form>
+        </div>
+        <div class="col-sm-6 ">
+          <br><br><br><br>
+          <img src="{{ url_for('static', filename='images/saham.jpg') }}" alt="" width="350" height="350">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
